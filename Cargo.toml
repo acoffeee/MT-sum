@@ -1,6 +1,10 @@
 [package]
-name = "MT-sum"
+name = "mt-sum"
 version = "0.1.0"
 edition = "2024"
+[[bin]]
+name = "mt-sum"
+path = "src/main.rs"
 
 [dependencies]
+rand = "0.10.2"
