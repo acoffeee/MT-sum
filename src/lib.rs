@@ -6,9 +6,7 @@ use std::thread;
 use std::sync::mpsc;
 use std::sync::Arc;
 
-fn main() {
 
-}
 pub fn sum_of_vec(vec: Vec<u32>) -> u64 {
     let (tx,rx) = mpsc::channel();
     let vec_arc = Arc::new(vec);
