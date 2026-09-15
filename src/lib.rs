@@ -2,10 +2,12 @@
 #![feature(test)]
 extern crate test;
 mod methods;
+mod adder;
 use methods::{
     sum_by_iter::sum_by_iter, 
-    sum_with_threading::sum_with_threading};
-
+    sum_with_threading::sum_with_threading
+};
+use adder::adders::adder_32bit;
 
 #[cfg(test)]
 mod tests {
@@ -25,5 +27,11 @@ mod tests {
     fn bench_iter(bencher: &mut Bencher) {
         let vec = gen_random_vec();
         bencher.iter(|| sum_by_iter(vec.clone()));
+    }
+    #[bench]
+    fn bench_adder(bencher: &mut Bencher) {
+        let n1 = rand::random::<u32>();
+        let n2 = rand::random::<u32>();
+        bencher.iter(|| adder_32bit(n1, n2));
     }
 }

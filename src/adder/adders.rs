@@ -1,14 +1,15 @@
-fn 32bit_adder(n1: u32, n2: u32 ) -> u64 {
+use super::serializers::{serializer, deserializer};
+pub fn adder_32bit(n1: u32, n2: u32 ) -> u32 {
     let n1 = deserializer(n1);
     let n2 = deserializer(n2);
-    let sum = [false;32];
-    let carry = false; //in a full adder wed have a cin but i dont think thats applicable here
+    let mut sum = [false;32];
+    let mut carry = false; //in a full adder wed have a cin but i dont think thats applicable here
     for i in 0..32 {
         let (s, c) = full_1bit_adder(n1[i], n2[i], carry);
         sum[i] = s;
         carry = c;
     }
-    serialize(sum)
+    serializer(sum)
 
 }
 fn full_1bit_adder(bit1: bool, bit2: bool, cin: bool) -> (bool, bool) { //(bool: sum, bool: carry)
@@ -22,10 +23,10 @@ fn full_1bit_adder(bit1: bool, bit2: bool, cin: bool) -> (bool, bool) { //(bool:
 
 fn half_1bit_adder(bit1: bool, bit2: bool) -> (bool, bool) {
     if !(bit1 || bit2) { //if both are low
-        (false, false)
+        return (false, false);
     }
     if bit1 ^ bit2 { //if one is high
-        (true, false)
+        return (true, false);
     }
     (false, true) //if both are high
 }
