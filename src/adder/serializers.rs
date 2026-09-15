@@ -1,9 +1,11 @@
 pub fn deserializer(mut number: u32) -> Vec<bool> {
     let mut bit_arr: Vec<bool> = Vec::new();
-    if number == 0 { return bit_arr; }
+    if number == 0 {
+        return bit_arr;
+    }
     while number > 0 {
         let remainder = number % 2;
-        bit_arr.push(if remainder == 0  {false} else { true });
+        bit_arr.push(if remainder == 0 { false } else { true });
         number = number / 2
     }
     for _ in 0..32 - bit_arr.len() {

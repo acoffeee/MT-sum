@@ -1,13 +1,9 @@
-
 #![feature(test)]
 extern crate test;
-mod methods;
 mod adder;
-use methods::{
-    sum_by_iter::sum_by_iter, 
-    sum_with_threading::sum_with_threading
-};
+mod methods;
 use adder::adders::adder_32bit;
+use methods::{sum_by_iter::sum_by_iter, sum_with_threading::sum_with_threading};
 
 #[cfg(test)]
 mod tests {
